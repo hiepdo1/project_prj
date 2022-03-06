@@ -1,0 +1,132 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 1, 2022, 11:45:45 PM
+    Author     : hiepx
+*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    background-image: url('./img/lofi1.gif');
+    background-size: cover;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+
+#main{
+    position: absolute;
+}
+
+#header{
+    height: 50px;
+    width: 100%;
+    background-color: agba(0,0,0,0.1);
+    position: fixed;
+}
+
+#nav{
+    margin: 0;
+}
+
+.nav ul{
+    text-align: center;
+}
+
+.nav ul li {
+    text-align : center;
+    display: inline-table;
+    padding: 13px 20px;
+    font-size: 20px;
+    position: relative;
+}
+
+.nav ul li a:hover{
+    color: #000;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+    font-family: cursive;
+}
+
+#nav .subnav {
+    position: absolute;
+    left: 0;
+    text-align: left;
+}
+
+
+#nav .subnav{
+    display: none;
+    width: 100px;
+}
+
+
+
+.list-music{
+    
+} 
+/* Thanh control */
+.footer{
+    text-align: center;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:40px;   /* Height of the footer */
+    
+    background-color: rgba(0,0,0,0);
+}
+
+.footer:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+
+.footer .control{
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:60%;
+    height:40px; 
+    color: rgba(255,255,255,255);
+    cursor: pointer;
+}
+
+.fas:hover{
+    color: #000;
+}
+
+
+.progress{
+    width: 50%;
+    height: 1px;
+    margin-left: 5%;
+    color: red;
+}
+
+.fas.fa-pause.icon-pause{
+    display: none;
+}
+/* Khi active */
+.active{
+    color: red;
+}
+
+.btn.btn-toggle-play.playing .fas.fa-pause.icon-pause {
+    display: inline-block;
+}
+  
+.btn.btn-toggle-play.playing .fas.fa-play.icon-play {
+    display: none;
+}  
+
+.audio{
+    width: 100%;
+}
