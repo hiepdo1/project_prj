@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/model/Music.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Spring%202022/PRJ%20301/project_prj/src/java/DAL/MusicDAO.java</file>
+            <file>file:/D:/Spring%202022/PRJ%20301/project_prj/web/assets/css/home.js</file>
+            <file>file:/D:/Spring%202022/PRJ%20301/project_prj/src/java/controller/playlistServlet.java</file>
+            <file>file:/D:/Spring%202022/PRJ%20301/project_prj/web/home.jsp</file>
+            <file>file:/D:/Spring%202022/PRJ%20301/project_prj/web/assets/css/home_style.css</file>
         </group>
     </open-files>
 </project-private>

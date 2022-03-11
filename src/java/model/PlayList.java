@@ -12,15 +12,15 @@ package model;
 public class PlayList {
     private int id;
     private String name;
-    private int musicId;
+    private int accountId;
 
     public PlayList() {
     }
 
-    public PlayList(int id, String name, int musicId) {
+    public PlayList(int id, String name, int accountId) {
         this.id = id;
         this.name = name;
-        this.musicId = musicId;
+        this.accountId = accountId;
     }
 
     public int getId() {
@@ -39,18 +39,20 @@ public class PlayList {
         this.name = name;
     }
 
-    public int getMusicId() {
-        return musicId;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setMusicId(int musicId) {
-        this.musicId = musicId;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     @Override
     public String toString() {
-        return "playList{" + "id=" + id + ", name=" + name + ", musicId=" + musicId + '}';
+        return "PlayList{" + "id=" + id + ", name=" + name + ", accountId=" + accountId + '}';
     }
+
+    
     
     
 }

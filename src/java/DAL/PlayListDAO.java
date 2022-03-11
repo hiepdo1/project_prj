@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Account;
+import model.Music;
 import model.PlayList;
 
 /**
@@ -34,11 +34,33 @@ public class PlayListDAO extends BaseDAO<PlayList> {
                 PlayList p = new PlayList();
                 p.setId(rs.getInt("playListId"));
                 p.setName(rs.getString("name"));
-                p.setMusicId(rs.getInt("musicId"));
+                p.setAccountId(rs.getInt("musicId"));
                 playlists.add(p);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayListDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return playlists;
+    }
+
+    public ArrayList getMusicOfPlaylist() {
+        ArrayList<Music> playlists = new ArrayList<>();
+        try {
+            String sql = "select m.musicId, m.name, m.[path], m.singer\n"
+                    + "from List l join Playlist p\n"
+                    + "on l.playlistId = p.playlistId join Music m on m.musicID = l.musicID";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Music p = new Music();
+                p.setId(rs.getInt("musicId"));
+                p.setName(rs.getString("name"));
+                p.setPath(rs.getString("path"));
+                p.setSinger(rs.getString("singer"));
+                playlists.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayListDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return playlists;
     }

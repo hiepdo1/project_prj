@@ -2,7 +2,8 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
-*/
+
+  }
 /* 
     Created on : Mar 1, 2022, 11:45:45 PM
     Author     : hiepx
@@ -13,7 +14,7 @@ and open the template in the editor.
     box-sizing: border-box;
 }
 html{
-    background-image: url('./img/lofi1.gif');
+
     background-size: cover;
     background-attachment:fixed;
     background-repeat:no-repeat;
@@ -21,13 +22,20 @@ html{
 
 #main{
     position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 #header{
     height: 50px;
     width: 100%;
-    background-color: agba(0,0,0,0.1);
     position: fixed;
+
+}
+
+#header:hover{
+    background-color: rgba(0,0,0,0.3);
+
 }
 
 #nav{
@@ -47,7 +55,7 @@ html{
 }
 
 .nav ul li a:hover{
-    color: #000;
+    color: rgba(255,255,255,0.5);
 }
 
 a{
@@ -68,11 +76,29 @@ a{
     width: 100px;
 }
 
-
-
+/*List music*/
 .list-music{
-    
-} 
+    margin-top: 100px;
+    margin-left: 8%;
+    width: 30%;
+    height: 70%;
+    color: #fff;
+    overflow: auto;
+}
+ /* Chiều rộng vùng chứa scrollbar */
+.list-music::-webkit-scrollbar {
+    width: 0px;              
+  }
+
+.list-music > p {
+    padding: 3px;
+    font-size: 20px;
+}
+
+#list-music-name{
+    font-size: 50px;
+}
+
 /* Thanh control */
 .footer{
     text-align: center;
@@ -80,7 +106,7 @@ a{
     bottom:0;
     width:100%;
     height:40px;   /* Height of the footer */
-    
+
     background-color: rgba(0,0,0,0);
 }
 
@@ -100,15 +126,22 @@ a{
 }
 
 .fas:hover{
-    color: #000;
+    color: #f55656;
 }
 
-
-.progress{
+.sideBar{
+    background-clip: content-box;
+    padding-top:5px;
+    padding-bottom:5px;
     width: 50%;
-    height: 1px;
     margin-left: 5%;
-    color: red;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.sideBar-time{
+    width: 100%;
+    background-color: rgba(255,255,255,0.5);
+    border-bottom: 2px solid #f55656;
 }
 
 .fas.fa-pause.icon-pause{
@@ -122,7 +155,7 @@ a{
 .btn.btn-toggle-play.playing .fas.fa-pause.icon-pause {
     display: inline-block;
 }
-  
+
 .btn.btn-toggle-play.playing .fas.fa-play.icon-play {
     display: none;
 }  

@@ -19,6 +19,6 @@ public class tec {
         
         PlayListDAO m = new PlayListDAO();
        
-         System.out.println(m.getAll());
+         System.out.println(m.getMusicOfPlaylist());
     }
 }

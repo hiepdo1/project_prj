@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html style=" background-image: url('assets/img/lofi1.gif');">
 
 <head>
     <title>Lofi music</title>
@@ -13,7 +13,7 @@ and open the template in the editor.
     <link rel="stylesheet" href="assets/css/home_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    
 </head>
 
 <body>
@@ -46,12 +46,11 @@ and open the template in the editor.
             </div>
         </div>
         <div class="list-music">
-
         </div>
         <audio id="audio" src=""></audio>
     </div>
     <!--Footer -->
-    <div class="footer" >
+    <div class="footer">
         <div class="control">
             <div class="btn btn-repeat">
                 <i class="fas fa-redo"></i>
@@ -73,35 +72,7 @@ and open the template in the editor.
         </div>
     </div>
 </body>
+<script src="assets/css/home.js"></script>
 
-<script>
-    const $ = document.querySelector.bind(document)
-    const playBtn = $('.btn-toggle-play')
-    const player = $('.player')
-    const app = {
-
-        //hàm lắng nghe / xử lí các sự kiện
-        handleEvent: function () {
-            playBtn.onclick = function () {
-                audio.play()
-                playBtn.classList.add('playing')
-            }
-        },
-
-        loadSong: function () {
-            const audio = $('#audio')
-            audio.src = 'assets/Music/SeeTinh-HoangThuyLinh-7130526.mp3'
-            console.log(audio)
-        },
-
-        start: function () {
-            this.handleEvent()
-            this.loadSong()
-        }
-
-    }
-    app.start()
-
-</script>
 
 </html>
