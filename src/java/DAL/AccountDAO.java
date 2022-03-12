@@ -38,13 +38,38 @@ public class AccountDAO extends BaseDAO<Account> {
                 a.setName(rs.getString("name"));
                 a.setUsername(rs.getString("username"));
                 a.setPassword(rs.getString("password"));
-                a.setPlaylisId(rs.getString("playlistId"));
                 accounts.add(a);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return accounts;
+    }
+
+    public Account getAccount(String username) {
+        try {
+            String sql = "SELECT [accountId]\n"
+                    + "      ,[username]\n"
+                    + "      ,[password]\n"
+                    + "      ,[name]\n"
+                    + "  FROM [musicDb].[dbo].[Account]"
+                    + "where username = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Account s = new Account();
+                s.setId(rs.getInt("accountId"));
+                s.setName(rs.getString("name"));
+                s.setUsername(rs.getString("username"));
+                s.setPassword(rs.getString("password"));
+                return s;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

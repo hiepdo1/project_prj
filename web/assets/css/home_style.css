@@ -85,6 +85,10 @@ a{
     color: #fff;
     overflow: auto;
 }
+
+.song{
+    cursor: pointer;
+}
  /* Chiều rộng vùng chứa scrollbar */
 .list-music::-webkit-scrollbar {
     width: 0px;              
@@ -99,6 +103,77 @@ a{
     font-size: 50px;
 }
 
+/*login*/
+.login_form{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-xmark{
+    font-size: 20px;
+    float: right;
+}
+
+
+.login_content{
+    color: #fff;
+    width: 30%;
+}
+
+.login_content h1{
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.fa-user-astronaut,.fa-lock{
+    background-color: #f2a752;
+    padding: 12px 15px 15px 15px;
+    margin: 0px;
+}
+.input{
+    padding: 14px;
+    border: none;
+    margin: 0px;
+    width: calc(100% - 44px);
+}
+
+#submit{
+    padding:10px 60px;
+    margin-top:30px;
+    background-color:#f2a752;
+    border: none;
+    border:1px solid black ;
+    border-radius: 20px ;
+
+}
+
+#submit:hover{
+    background-color: #fbcebb;
+}
+
+#signup{
+    color: #f2a752;
+}
+
+#signup:hover{
+    opacity: 0.6;
+}
+
+.login-footer{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.login_form.display {
+    display: flex;
+}
 /* Thanh control */
 .footer{
     text-align: center;

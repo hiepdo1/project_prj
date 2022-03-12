@@ -17,8 +17,8 @@ public class tec {
      public static void main(String[] args) {
         // TODO code application logic here
         
-        PlayListDAO m = new PlayListDAO();
+        AccountDAO m = new AccountDAO();
        
-         System.out.println(m.getMusicOfPlaylist());
+         System.out.println(m.getAccount("admin"));
     }
 }

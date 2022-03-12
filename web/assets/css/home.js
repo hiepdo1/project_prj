@@ -15,9 +15,23 @@ const prevBtn = $('.btn-prev');
 const randomBtn = $('.btn-random');
 const sideBar = $('.sideBar');
 const sideBarTime = $('.sideBar-time');
+const close = $('.fa-xmark');
+const login = $('#login');
+const loginForm = $('.login_form');
+
 
 const songItem = Array.from($$('.song-item'));
+const song = Array.from($$('.song'));
 const audio = $('#audio');
+
+login.onclick = function(){
+    loginForm.classList.add('display');
+}
+
+close.onclick = function(){
+    loginForm.classList.remove('display');
+
+}
 
 const app = {
     currentIndex: 0,
@@ -110,10 +124,7 @@ const app = {
 
         }
         //Xử lí khi tua song
-        sideBarTime.onclick = function (e) {
-            console.log('time' + e.pageX);
-
-        }
+        
         sideBar.onclick = function (e) {
             const seekProcess = e.pageX - this.offsetLeft;
             let progressPercent = (seekProcess / this.offsetWidth) * 100;
@@ -121,6 +132,7 @@ const app = {
             const seekTime = (progressPercent * audio.duration) / 100;
             audio.currentTime = seekTime;
         }
+        
 
     },
 

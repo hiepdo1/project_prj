@@ -4,9 +4,49 @@
         <servlet-name>playlistServlet</servlet-name>
         <servlet-class>controller.playlistServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>controller.loginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>playlistchillServlet</servlet-name>
+        <servlet-class>controller.playlistchillServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>playListFocusServlet</servlet-name>
+        <servlet-class>controller.playListFocusServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>playListSleepServlet</servlet-name>
+        <servlet-class>controller.playListSleepServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userProfileServlet</servlet-name>
+        <servlet-class>controller.userProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>playlistServlet</servlet-name>
         <url-pattern>/playlistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/loginservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>playlistchillServlet</servlet-name>
+        <url-pattern>/chill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>playListFocusServlet</servlet-name>
+        <url-pattern>/focus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>playListSleepServlet</servlet-name>
+        <url-pattern>/sleep</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userProfileServlet</servlet-name>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

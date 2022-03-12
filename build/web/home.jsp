@@ -15,7 +15,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="assets/css/home_style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     </head>
 
@@ -30,7 +30,7 @@
                         <li><a href="#tour">Playlist focus</a></li>
                         <li><a href="#contact">Playlist sleep</a></li>
                         <li><a href="#contact">Your favarite playlist</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a id="login">Login</a></li>
                     </ul>
                 </div>
                 <!-- Search button -->
@@ -42,9 +42,9 @@
                 <h2 id="list-music-name">List music</h2>
                 <c:forEach items="${requestScope.list}" var="i">
                     <div class="song-item" data-id="${i.id}" data-name="${i.name}" data-path="${i.path}" >
-                        <p>${i.id}.${i.name}</p>
                     </div> 
                 </c:forEach>
+               
             </div>
         </div>
         <!--Footer -->
@@ -68,6 +68,24 @@
                 </div>
                 <div class="sideBar" ><div class="sideBar-time"></div></div>
                 <audio id="audio" src=""></audio>
+            </div>
+        </div>
+        <!-- Login -->
+        <div class="login_form">
+            <div class="login_content">
+                <form action="loginservlet" method="post">
+                    <i class="fas fa-xmark"></i>
+                    <h1>Login</h1>
+                    <div class=""><i class="fas fa-user-astronaut"></i><input class="input" type="text" name="username"
+                            placeholder="Username"></div>
+                    <div><i class="fas fa-lock"></i><input class="input" type="password" name="password"
+                            placeholder="Password"></div>
+                    <div class="login-footer">
+                        <input id="submit" type="submit" name="login" value="Login">
+                        <p id="text">Not a member?<a id="signup" href="#">Signup</a></p>
+                    </div>
+
+                </form>
             </div>
         </div>
 
