@@ -59,9 +59,14 @@ public class playlistchillServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String auth = request.getParameter("auth");
         MusicDAO p = new MusicDAO();
-        ArrayList<Music> list = p.getAll();
-        request.setAttribute("active", "active");
+        ArrayList<Music> list = p.getListMusic(2);
+        if (auth!=null && auth.equals("home")) {
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }
+        request.setAttribute("active", "chill");
         request.setAttribute("list", list);
         request.getRequestDispatcher("admin.jsp").forward(request, response);
     }

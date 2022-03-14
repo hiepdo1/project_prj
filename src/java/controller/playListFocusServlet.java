@@ -60,8 +60,13 @@ public class playListFocusServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MusicDAO p = new MusicDAO();
-        ArrayList<Music> list = p.getAll();
-        request.setAttribute("active", "active");
+        ArrayList<Music> list = p.getListMusic(3);
+        String auth = request.getParameter("auth");
+        if (auth!=null &&auth.equals("home")) {
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }
+        request.setAttribute("active", "focus");
         request.setAttribute("list", list);
         request.getRequestDispatcher("admin.jsp").forward(request, response);
     }

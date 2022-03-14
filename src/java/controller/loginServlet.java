@@ -72,15 +72,15 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("username");
-        String pass = request.getParameter("password");
-        AccountDAO acount = new AccountDAO();
-        Account a = acount.getAccount(user);
-        if (a != null && a.getPassword().equals(pass)) {
-            response.sendRedirect("./chill");
-        } else {
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        }
+//        String user = request.getParameter("username");
+//        String pass = request.getParameter("password");
+//        AccountDAO acount = new AccountDAO();
+//        Account a = acount.getAccount(user);
+//        if (a != null && a.getPassword().equals(pass)) {
+//            response.sendRedirect("./all");
+//        } else {
+//            request.getRequestDispatcher("home.jsp").forward(request, response);
+//        }
     }
 
     /**

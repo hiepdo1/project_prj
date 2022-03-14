@@ -24,6 +24,12 @@ public class Music {
         this.singer = singer;
         this.path = path;
     }
+    
+    public Music(String name, String singer, String path) {
+        this.name = name;
+        this.singer = singer;
+        this.path = path;
+    }
 
     public int getId() {
         return id;

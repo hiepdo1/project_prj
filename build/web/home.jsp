@@ -25,12 +25,13 @@
                 <!-- Nav -->
                 <div class="nav">
                     <ul id="nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#the-band">Playlist chill </a></li>
-                        <li><a href="#tour">Playlist focus</a></li>
-                        <li><a href="#contact">Playlist sleep</a></li>
-                        <li><a href="#contact">Your favarite playlist</a></li>
-                        <li><a id="login">Login</a></li>
+                        <li><a href="./home.jsp">Home</a></li>
+                        <li><a href="./chill?auth=home">Playlist chill </a></li>
+                        <li><a href="./focus?auth=home">Playlist focus</a></li>
+                        <li><a href="./sleep?auth=home">Playlist sleep</a></li>
+                        <li style="display: none;"><a href="#contact">Your favarite playlist</a></li>
+                        <li style><a id="login">Login</a></li>
+                        <li style><a id="lohout">Logout</a></li>
                     </ul>
                 </div>
                 <!-- Search button -->
@@ -39,7 +40,6 @@
                 </div>
             </div>
             <div class="list-music">
-                <h2 id="list-music-name">List music</h2>
                 <c:forEach items="${requestScope.list}" var="i">
                     <div class="song-item" data-id="${i.id}" data-name="${i.name}" data-path="${i.path}" >
                     </div> 
@@ -73,7 +73,7 @@
         <!-- Login -->
         <div class="login_form">
             <div class="login_content">
-                <form action="loginservlet" method="post">
+                <form action="loginservlet" method="post" >
                     <i class="fas fa-xmark"></i>
                     <h1>Login</h1>
                     <div class=""><i class="fas fa-user-astronaut"></i><input class="input" type="text" name="username"

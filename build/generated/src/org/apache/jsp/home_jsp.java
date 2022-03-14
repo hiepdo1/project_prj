@@ -74,10 +74,10 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- Nav -->\n");
       out.write("                <div class=\"nav\">\n");
       out.write("                    <ul id=\"nav\">\n");
-      out.write("                        <li><a href=\"#\">Home</a></li>\n");
-      out.write("                        <li><a href=\"#the-band\">Playlist chill </a></li>\n");
-      out.write("                        <li><a href=\"#tour\">Playlist focus</a></li>\n");
-      out.write("                        <li><a href=\"#contact\">Playlist sleep</a></li>\n");
+      out.write("                        <li><a href=\"./home.jsp\">Home</a></li>\n");
+      out.write("                        <li><a href=\"./chill?auth=home\">Playlist chill </a></li>\n");
+      out.write("                        <li><a href=\"./focus?auth=home\">Playlist focus</a></li>\n");
+      out.write("                        <li><a href=\"./sleep?auth=home\">Playlist sleep</a></li>\n");
       out.write("                        <li><a href=\"#contact\">Your favarite playlist</a></li>\n");
       out.write("                        <li><a id=\"login\">Login</a></li>\n");
       out.write("                    </ul>\n");
@@ -88,7 +88,6 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <div class=\"list-music\">\n");
-      out.write("                <h2 id=\"list-music-name\">List music</h2>\n");
       out.write("                ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
@@ -122,12 +121,12 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Login -->\n");
       out.write("        <div class=\"login_form\">\n");
       out.write("            <div class=\"login_content\">\n");
-      out.write("                <form action=\"loginservlet\" method=\"post\">\n");
+      out.write("                <form action=\"loginservlet\" method=\"post\" >\n");
       out.write("                    <i class=\"fas fa-xmark\"></i>\n");
       out.write("                    <h1>Login</h1>\n");
-      out.write("                    <div class=\"\"><i class=\"fas fa-user-astronaut\"></i><input class=\"input\" type=\"text\" name=\"Username\"\n");
+      out.write("                    <div class=\"\"><i class=\"fas fa-user-astronaut\"></i><input class=\"input\" type=\"text\" name=\"username\"\n");
       out.write("                            placeholder=\"Username\"></div>\n");
-      out.write("                    <div><i class=\"fas fa-lock\"></i><input class=\"input\" type=\"password\" name=\"Password\"\n");
+      out.write("                    <div><i class=\"fas fa-lock\"></i><input class=\"input\" type=\"password\" name=\"password\"\n");
       out.write("                            placeholder=\"Password\"></div>\n");
       out.write("                    <div class=\"login-footer\">\n");
       out.write("                        <input id=\"submit\" type=\"submit\" name=\"login\" value=\"Login\">\n");

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>controller.loginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>playlistServlet</servlet-name>
         <servlet-class>controller.playlistServlet</servlet-class>
@@ -24,6 +32,26 @@
         <servlet-name>userProfileServlet</servlet-name>
         <servlet-class>controller.userProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>musicServlet</servlet-name>
+        <servlet-class>controller.musicServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateMusicServlet</servlet-name>
+        <servlet-class>controller.updateMusicServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteMusicServlet</servlet-name>
+        <servlet-class>controller.deleteMusicServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <servlet-class>controller.deleteUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createAccountServlet</servlet-name>
+        <servlet-class>controller.createAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>playlistServlet</servlet-name>
         <url-pattern>/playlistServlet</url-pattern>
@@ -47,6 +75,26 @@
     <servlet-mapping>
         <servlet-name>userProfileServlet</servlet-name>
         <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>musicServlet</servlet-name>
+        <url-pattern>/all</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateMusicServlet</servlet-name>
+        <url-pattern>/updatemusic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteMusicServlet</servlet-name>
+        <url-pattern>/deletemusic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <url-pattern>/deleteuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createAccountServlet</servlet-name>
+        <url-pattern>/createaccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

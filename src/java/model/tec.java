@@ -11,6 +11,7 @@ package model;
  * @author hiepx
  */
 import DAL.AccountDAO;
+import DAL.MusicDAO;
 import DAL.PlayListDAO;
 import java.util.ArrayList;
 public class tec {
@@ -18,7 +19,9 @@ public class tec {
         // TODO code application logic here
         
         AccountDAO m = new AccountDAO();
+        
        
-         System.out.println(m.getAccount("admin"));
+         System.out.println(m.getAll());
     }
 }
+

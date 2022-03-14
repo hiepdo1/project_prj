@@ -5,6 +5,7 @@
  */
 package controller;
 
+import DAL.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -56,7 +57,9 @@ public class userProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            AccountDAO a = new  AccountDAO();
+            request.setAttribute("ulist", a.getAll());
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
     }
 
     /**

@@ -24,12 +24,13 @@ public class AccountDAO extends BaseDAO<Account> {
     public ArrayList<Account> getAll() {
         ArrayList<Account> accounts = new ArrayList<>();
         try {
-            String sql = "SELECT TOP 1000 [accountId]\n"
-                    + "      ,[name]\n"
+            String sql = "SELECT [accountId]\n"
                     + "      ,[username]\n"
                     + "      ,[password]\n"
-                    + "      ,[playlistId]\n"
-                    + "  FROM [musicDb].[dbo].[account]";
+                    + "      ,[email]\n"
+                    + "      ,[name]\n"
+                    + "      ,[role]\n"
+                    + "  FROM [musicDb].[dbo].[Account]";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -38,6 +39,8 @@ public class AccountDAO extends BaseDAO<Account> {
                 a.setName(rs.getString("name"));
                 a.setUsername(rs.getString("username"));
                 a.setPassword(rs.getString("password"));
+                a.setRole(rs.getBoolean("role"));
+                a.setEmail(rs.getString("email"));
                 accounts.add(a);
             }
         } catch (SQLException ex) {
@@ -52,6 +55,7 @@ public class AccountDAO extends BaseDAO<Account> {
                     + "      ,[username]\n"
                     + "      ,[password]\n"
                     + "      ,[name]\n"
+                    + "      ,[email    ]\n"
                     + "  FROM [musicDb].[dbo].[Account]"
                     + "where username = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -71,5 +75,38 @@ public class AccountDAO extends BaseDAO<Account> {
         }
         return null;
     }
-
+    public void deleteAccount(int id) {
+        try {
+            String sql = "DELETE PlayList WHERE accountId=?\n"
+                    + "DELETE Account WHERE accountId=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MusicDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void insertAccount(Account s) {
+        try {
+            String sql = "INSERT INTO Account\n"
+                    + "           ([username]\n"
+                    + "           ,[password]\n"
+                    + "           ,[name])\n"
+                    + "           ,[email])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, s.getUsername());
+            statement.setString(2, s.getPassword());
+            statement.setString(3, s.getName());
+            statement.setString(4, s.getEmail());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

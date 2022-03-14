@@ -5,14 +5,17 @@
 }
 html{
     height: 100%;
-    background-color: #faf0ea;
+    background-color: #fff;
 }
 body{
     height: 100%;
 }
+a{
+    text-decoration: none;
+}
 .nav{
     height: 100%;
-    background-color: #f9b39e;
+    background-color: #fbcebb;
     width: 300px;
     position: fixed;
 
@@ -29,7 +32,7 @@ body{
     text-decoration: none;
     color: #000;
     font-size: 20px;   
-    margin:20% ;
+    padding: 20px 100px 20px 60px;
 }
 #nav li {
     padding: 20px 0px;
@@ -49,4 +52,75 @@ body{
 }
 .active{
     background-color: #faf0ea;
+}
+.main td{
+    padding-right: 50px;
+}
+
+.header{
+    text-align: center;
+    background-color: #faf0ea;
+    height: 100px;
+}
+.main table{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 96%;
+}
+tr{
+}
+/*update form */
+.update_music{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
+}
+.update_music_content{
+    background-image:url('../img/nen.png');
+    background-size: 100% 100%;  
+    border-radius: 30px;
+    width: 30%;
+    margin-bottom:10%;
+}
+.update_music_content h2{
+    text-align: center;
+    border-top-left-radius:30px;
+    border-top-right-radius:30px;
+    height: 100px;
+    padding-top: 40px;
+}
+.update_music_content #content{
+    margin-left: 20%;
+}
+.update_music_content #content td{
+    padding: 5px 0px;
+}
+.update_music_content #content input{
+    background-color: rgba(255,255,255,0); 
+    border: none;
+    border-bottom: 1px solid #000;
+}
+.update_music_content .inputbtn{
+    text-align: center;
+    margin:  40px 0px;
+}
+
+.update_music_content .inputbtn input{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.update_music_content .inputbtn input:hover{
+    opacity: 0.8;
+}
+
+.display{
+    display: flex;
 }
