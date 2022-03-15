@@ -23,11 +23,11 @@
     <body>
 
         <div class="nav">
-            <h1><i class="fa-solid fa-headphones-simple"></i> Admin</h1>
+            <div class="home"><a href="./playlistServlet"><i class="fa-solid fa-headphones-simple"></i> Home</a></div>
             <ul id="nav">
                 <li class="${requestScope.active=="all"? "active":""}"><a href="./all"><i class="fa fa-file-audio"></i>All music </a></li>
                 <li class="${requestScope.active=="chill"? "active":""}"><a href="./chill"><i class="fa fa-compact-disc"></i>Playlist chill </a></li>
-                <li class="${requestScope.active=="focus"? "active":""}"><a href="./focus"><i class="fa-solid fa-music"></i>Playlist focus</a></li>
+                <li class="${requestScope.active=="focus"? "active":""}"><a href="./focus"><i class="fa-solid fa-music"></i>Playlist focus </a></li>
                 <li class="${requestScope.active=="sleep"? "active":""}"><a href="./sleep"> <i class="fa-solid fa-microphone"></i> Playlist sleep</a></li>
                 <li class="${requestScope.active=="user"? "active":""}"><a href="./user"><i class="fa-solid fa-id-card"></i>User </a></li>
             </ul>
@@ -38,28 +38,51 @@
             </div>
             <!--List music-->
             <c:if test="${requestScope.list.size()>0}">
-                <table>
+                <table  style="">
+                    <tr>
+                        <td colspan="2">
+                            <select name="op">
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select><input type="submit" value="Show" class="choose"></td><td></td><td></td>
+                        <%if (request.getAttribute("active") == "all") { %>
+                        <td><div class="create-btn"><a href="./createmusic" ><i class="fa fa-plus plus"></i>  Create</a></div></td>
+                        <%} else {%>
+                        <td><div class="create-btn"><a href="./addmusic?pid=${requestScope.pid}" ><i class="fa fa-plus plus"></i>  Add</a></div></td>
+                        <%}%>
+                    </tr>
                     <tr>
                         <td>ID</td>
                         <td>Name</td>
                         <td>Singer</td>
-                        <td></td><td></td>
+                        <td></td><td></td><td></td>
                     </tr>
                     <c:forEach items="${requestScope.list}" var="i">
                         <tr>
                             <td>${i.id}</td>
                             <td>${i.name}</td>
                             <td>${i.singer}</td>
-                            <td><a href="updatemusic?id=${i.id}"><i class="fa fa-pen"></i></a></td>
-                            <td><a href="" onclick="showMes(${i.id})"><i class="fa fa-trash-can"></i></a></td>
+                            <td class="btn"><a href="updatemusic?id=${i.id}"><i class="fa fa-pen"></i></a></td>
+                            <td class="btn"><a href="" onclick="showMes(${i.id})"><i class="fa fa-trash-can"></i></a></td>
                         </tr>
                     </c:forEach>
                 </table>
-                <a href="./createmusic" ><i class="fa fa-plus"></i>Create</a>
+
+
             </c:if>
-                <!--List user-->
+            <!--List user-->
             <c:if test="${requestScope.ulist.size()>0}">
                 <table>
+                    <tr>
+                        <td colspan="2">
+                            <select name="op">
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select><input type="submit" value="Choose" class="choose"></td><td></td><td></td><td></td><td></td>
+                        <td><div class="create-btn"><a href="./createmusic" ><i class="fa fa-plus plus"></i>  Create</a></div></td>
+                    </tr>
                     <tr>
                         <td>ID</td>
                         <td>Name</td>
@@ -75,8 +98,8 @@
                             <td>${i.username}</td>
                             <td>${i.email}</td>
                             <td>${i.role==true?"Admin":"User"}</td>
-                            <td><a href="updateuser?id=${i.id}"><i class="fa fa-pen"></i></a></td>
-                            <td><a href="" onclick="showMess(${i.id})"><i class="fa fa-trash-can"></i></a></td>
+                            <td class="btn"><a href="updateuser?id=${i.id}"><i class="fa fa-pen"></i></a></td>
+                            <td class="btn"><a href="" onclick="showMess(${i.id})"><i class="fa fa-trash-can"></i></a></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -84,17 +107,18 @@
             </c:if>
 
         </div>
+
         <%--Update form --%>
-        <div class="update_music ${requestScope.display=="uactive"?"display":""}">
-            <div class="update_music_content">
+        <div class="action ${requestScope.display=="uactive"?"display":""}">
+            <div class="action_content">
                 <h2>Update</h2>
                 <form action="updatemusic" method="post" >
-                    <div id="content" >
+                    <div class="content" >
                         <c:set var="music" value="${requestScope.umusic}"/>
                         <table>
                             <tr>
                                 <td>ID:</td>
-                                <td><input type="text" disabled value="${music.id}">
+                                <td><input style="border-bottom: none" type="text" disabled value="${music.id}">
                                     <input name="id" value="${music.id}" type="hidden" />
                                 </td>
 
@@ -115,17 +139,18 @@
                 </form>
             </div>
         </div>
+
         <%--Create form --%>
-        <div class="update_music ${requestScope.display}">
-            <div class="update_music_content">
+        <div class="action ${requestScope.display}">
+            <div class="action_content">
                 <h2>Update</h2>
                 <form action="createmusic" method="post" enctype="multipart/form-data">
-                    <div id="content" >
+                    <div class="content" >
                         <c:set var="music" value="${requestScope.umusic}"/>
                         <table>
                             <tr>
                                 <td>Upload file:</td>
-                                <td><input type="file" name="file" size="60" /></td>
+                                <td><input type="file" name="file" size="60" style="border-bottom: none"/></td>
 
                             </tr>
                             <tr>
@@ -138,6 +163,37 @@
                         </table>
                     </div>
                     <div class="inputbtn"><input id="inputbtn" type="submit" value="Create"></div>
+                </form>
+            </div>
+        </div>
+
+        <%--Add form --%>
+        <div class="action ${requestScope.add=="add"?"display":""}">
+            <div class="action_content">
+                <h2>Update</h2>
+                <form action="addmusic" method="post" enctype="multipart/form-data">
+                    <div class="content" >
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td>Singer</td>
+                                <td>Id</td>
+                                <td></td><td></td><td></td>
+                            </tr>
+                            <c:forEach items="${requestScope.xlist}" var="i">
+                                <tr>
+                                    <td>${i.name}</td>
+                                    <td>${i.singer}</td>
+                                    <td>${i.id}</td>
+
+                                    <td><input type="submit" value="add"></td>
+
+                                    <td><a href="./addmusic?mid=${i.id}&&pid=${requestScope.pid}" ><i class="fa fa-plus"></i>Add music</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+
                 </form>
             </div>
         </div>
