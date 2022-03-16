@@ -26,12 +26,12 @@
                 <div class="nav">
                     <ul id="nav">
                         <li><a href="./home.jsp">Home</a></li>
-                        <li><a href="./chill?auth=home">Playlist chill </a></li>
+                        <li ><a href="./chill?auth=home">Playlist chill </a></li>
                         <li><a href="./focus?auth=home">Playlist focus</a></li>
                         <li><a href="./sleep?auth=home">Playlist sleep</a></li>
                         <li style="display: none;"><a href="#contact">Your favarite playlist</a></li>
-                        <li style><a id="login">Login</a></li>
-                        <li style><a id="lohout">Logout</a></li>
+                        <li class="${requestScope.login=="login"?"undisplay":"display"}"><a id="login">Login</a></li>
+                        <li class="${requestScope.login=="login"?"display":"undisplay"}"><a id="logout">Logout</a></li>
                     </ul>
                 </div>
                 <!-- Search button -->
@@ -41,7 +41,7 @@
             </div>
             <div class="list-music">
                 <c:forEach items="${requestScope.list}" var="i">
-                    <div class="song-item" data-id="${i.id}" data-name="${i.name}" data-path="${i.path}" >
+                    <div class="song-item" data-id="${i.id}" data-name="${i.name}" data-path="${i.path}" data-singer="${i.singer}">
                     </div> 
                 </c:forEach>
                
@@ -50,6 +50,7 @@
         <!--Footer -->
         <div class="footer">
             <div class="control">
+                
                 <div class="btn btn-repeat">
                     <i class="fas fa-redo"></i>
                 </div>
@@ -68,6 +69,9 @@
                 </div>
                 <div class="sideBar" ><div class="sideBar-time"></div></div>
                 <audio id="audio" src=""></audio>
+                <div>
+                    <p>Playlist ${requestScope.active}:<p id="currentmusic"></p> </p>
+                </div>
             </div>
         </div>
         <!-- Login -->

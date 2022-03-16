@@ -24,11 +24,11 @@ const songItem = Array.from($$('.song-item'));
 const song = Array.from($$('.song'));
 const audio = $('#audio');
 
-login.onclick = function(){
+login.onclick = function () {
     loginForm.classList.add('display');
 }
 
-close.onclick = function(){
+close.onclick = function () {
     loginForm.classList.remove('display');
 
 }
@@ -41,6 +41,7 @@ const app = {
             id: song.dataset.id,
             name: song.dataset.name,
             path: song.dataset.path,
+            singer: song.dataset.singer,
         };
     }),
 
@@ -51,6 +52,7 @@ const app = {
             }
         })
     },
+    
 
     //hàm lắng nghe / xử lí các sự kiện
     handleEvent: function () {
@@ -124,7 +126,7 @@ const app = {
 
         }
         //Xử lí khi tua song
-        
+
         sideBar.onclick = function (e) {
             const seekProcess = e.pageX - this.offsetLeft;
             let progressPercent = (seekProcess / this.offsetWidth) * 100;
@@ -132,11 +134,12 @@ const app = {
             const seekTime = (progressPercent * audio.duration) / 100;
             audio.currentTime = seekTime;
         }
-        
+
 
     },
 
     loadSong: function () {
+        this.render();
         audio.src = this.currentSong.path;
     },
 
@@ -153,7 +156,7 @@ const app = {
 
     prevSong: function () {
         this.currentIndex--;
-        
+
         console.log(this.listSong.length - 1);
 
         if (this.currentIndex < 0) {
@@ -169,14 +172,17 @@ const app = {
             newIndex = Math.floor(Math.random() * this.listSong.length);
         } while (newIndex === this.currentIndex)
         this.currentIndex = newIndex;
-    
         this.loadSong();
+    },
+    render: function () {
+        document.getElementById('currentmusic').innerHTML = this.currentSong.name + " - "+this.currentSong.singer; 
     },
 
     start: function () {
         this.defineProperties();
         this.handleEvent();
         this.loadSong();
+        this.render();
     }
 
 };
