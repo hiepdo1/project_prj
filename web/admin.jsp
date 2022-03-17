@@ -40,12 +40,7 @@
             <c:if test="${requestScope.list.size()>0}">
                 <table  style="">
                     <tr>
-                        <td colspan="2">
-                            <select name="op">
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                            </select><input type="submit" value="Show" class="choose"></td><td></td><td></td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         <%if (request.getAttribute("active") == "all") { %>
                         <td><div class="create-btn"><a href="./createmusic" ><i class="fa fa-plus plus"></i>  Create</a></div></td>
                         <%} else {%>
@@ -60,28 +55,39 @@
                     </tr>
                     <c:forEach items="${requestScope.list}" var="i">
                         <tr>
-                            <td>${i.id}</td>
+                            <td>${i.id} </td>
                             <td>${i.name}</td>
                             <td>${i.singer}</td>
                             <td class="btn"><a href="updatemusic?id=${i.id}"><i class="fa fa-pen"></i></a></td>
+                                    <%if (request.getAttribute("active") == "all") { %>
                             <td class="btn"><a href="" onclick="showMes(${i.id})"><i class="fa fa-trash-can"></i></a></td>
+                                    <%} else {%>
+                            <td class="btn"><a href="" onclick="showMesss(${i.id},${requestScope.pid})"><i class="fa fa-trash-can"></i></a></td>
+                                    <%}%>
                         </tr>
                     </c:forEach>
+
+                    <div class="paging ">
+                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+                            <a class="${i==page?"activee":""}" href="./${requestScope.active}?page=${i}">${i}</a>
+                        </c:forEach>
+                    </div>
+
                 </table>
-
-
             </c:if>
+            <!--End List music-->
             <!--List user-->
             <c:if test="${requestScope.ulist.size()>0}">
                 <table>
                     <tr>
-                        <td colspan="2">
-                            <select name="op">
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                            </select><input type="submit" value="Choose" class="choose"></td><td></td><td></td><td></td><td></td>
-                        <td><div class="create-btn"><a href="./createmusic" ><i class="fa fa-plus plus"></i>  Create</a></div></td>
+                        <!--                        <td colspan="2">
+                                                    <select name="op">
+                                                        <option value="10">10</option>
+                                                        <option value="15">15</option>
+                                                        <option value="20">20</option>
+                                                    </select><input type="submit" value="Choose" class="choose">-->
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td><div class="create-btn"><a href="./createaccount" ><i class="fa fa-plus plus"></i>  Add user</a></div></td>
                     </tr>
                     <tr>
                         <td>ID</td>
@@ -97,14 +103,35 @@
                             <td>${i.name}</td>
                             <td>${i.username}</td>
                             <td>${i.email}</td>
-                            <td>${i.role==true?"Admin":"User"}</td>
-                            <td class="btn"><a href="updateuser?id=${i.id}"><i class="fa fa-pen"></i></a></td>
+                            <td style="display: ${requestScope.none=="none"?"none":""}">${i.role==true?"Admin":"User"}</td>
+                            <td style="display: ${requestScope.none=="none"?"":"none"}" >
+                                <form action="updateuser" method="get">
+                                    <input hidden name="uid" value="${i.id}">  
+                                    <select class="select" name="select" >
+                                        <option onclick="this.form.submit()"  value="true" ${i.role==true?"selected":""}>Admin</option>
+                                        <option onclick="this.form.submit()" value="false"  ${i.role==true?"":"selected"}>User</option>
+                                    </select>
+                                    <input id="update" type="submit" value="Update" />
+                                </form>
+                            </td>
+                            <td class="btn " style="display: ${requestScope.none=="none"?"none":""}">
+                                <a href="updateuser"><i class="fa fa-pen"></i></a>
+                            </td>
+
+
                             <td class="btn"><a href="" onclick="showMess(${i.id})"><i class="fa fa-trash-can"></i></a></td>
                         </tr>
                     </c:forEach>
+                    <div class="paging ">
+                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+                            <a class="${i==page?"activee":""}" href="./${requestScope.active}?page=${i}">${i}</a>
+                        </c:forEach>
+                    </div>
                 </table>
-                <a href="./createuser" ><i class="fa fa-plus"></i>Add user</a>
+
+
             </c:if>
+            <!--End list user-->
 
         </div>
 
@@ -140,6 +167,9 @@
             </div>
         </div>
 
+
+
+
         <%--Create form --%>
         <div class="action ${requestScope.display}">
             <div class="action_content">
@@ -166,50 +196,85 @@
                 </form>
             </div>
         </div>
-
-        <%--Add form --%>
-        <div class="action ${requestScope.add=="add"?"display":""}">
+        <%--Create user form --%>
+        <div class="action ${requestScope.display=="user"?"display":""}">
             <div class="action_content">
-                <h2>Update</h2>
-                <form action="addmusic" method="post" enctype="multipart/form-data">
+                <h2>Add New User</h2>
+                <form action="createaccount" method="post">
                     <div class="content" >
                         <table>
                             <tr>
-                                <td>Name</td>
-                                <td>Singer</td>
-                                <td>Id</td>
-                                <td></td><td></td><td></td>
+                                <td>User name:</td>
+                                <td><input type="text" name="username"/></td>
+
                             </tr>
-                            <c:forEach items="${requestScope.xlist}" var="i">
-                                <tr>
-                                    <td>${i.name}</td>
-                                    <td>${i.singer}</td>
-                                    <td>${i.id}</td>
-
-                                    <td><input type="submit" value="add"></td>
-
-                                    <td><a href="./addmusic?mid=${i.id}&&pid=${requestScope.pid}" ><i class="fa fa-plus"></i>Add music</a></td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                    </div>
-
-                </form>
+                            <tr>
+                                <td>Pass word:</td>
+                                <td><input type="text" name="pass" ></td>
+                            </tr><tr>
+                                <td>Name:</td>
+                                <td><input type="text" name="name" ></td>
+                            </tr>
+                        </tr><tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="email" ></td>
+                    </tr>
+                </table>
             </div>
-        </div>
-    </body>
-    <script>
-        function showMes(id) {
-            var check = confirm("Are you sure you want to remove this music ?");
-            if (check === true) {
-                window.location.href = "deletemusic?id=" + id;
-            }
+            <div class="inputbtn"><input id="inputbtn" type="submit" value="Create"></div>
+        </form>
+    </div>
+</div>
+
+<%--Add form --%>
+<div class="add_form ${requestScope.add=="add"?"display":""}">
+    <div class="add_content">
+        <h2>Add Music</h2>
+        <form action="addmusic" method="post">
+            <div class="add_form_content" >
+                <table>
+                    <tr>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Singer</td>
+
+                        <td></td><td></td><td></td>
+                    </tr>
+                    <c:forEach items="${requestScope.xlist}" var="i">
+                        <tr>
+                            <td>${i.id}</td>
+                            <td>${i.name}</td>
+                            <td>${i.singer}</td>
+                            <td class="addbtn"><a href="./addmusic?mid=${i.id}&&pid=${requestScope.pid}" ><i class="fa fa-plus" style="font-size: 12px;padding-right: 2px;"></i>Add music</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+    function showMes(id) {
+        var check = confirm("Are you sure you want to remove this music ?");
+        if (check === true) {
+            window.location.href = "deletemusic?id=" + id;
         }
-        function showMess(id) {
-            var check = confirm("Are you sure you want to remove this user ?");
-            if (check === true) {
-                window.location.href = "deleteuser?id=" + id;
-            }
+    }
+    function showMesss(mid, pid) {
+        var check = confirm("Are you sure you want to remove this musicfsdagsdfgsdf ?");
+        if (check === true) {
+            window.location.href = "deletemusic?mid=" + mid + "&&pid=" + pid;
         }
-    </script>
+    }
+    function showMess(id) {
+        var check = confirm("Are you sure you want to remove this user ?");
+        if (check === true) {
+            window.location.href = "deleteuser?id=" + id;
+        }
+    }
+
+</script>
 </html>
