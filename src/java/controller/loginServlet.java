@@ -9,6 +9,7 @@ import DAL.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +38,7 @@ public class loginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet loginServlet</title>");            
+            out.println("<title>Servlet loginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet loginServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +59,17 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null && cookies.length >1) {
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("display")) {
+                    request.setAttribute("display", cooky.getValue());
+                    request.getRequestDispatcher("Detail.jsp").forward(request, response);
+                }
+            }
+        } else {
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -72,15 +83,33 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String user = request.getParameter("username");
-//        String pass = request.getParameter("password");
-//        AccountDAO acount = new AccountDAO();
-//        Account a = acount.getAccount(user);
-//        if (a != null && a.getPassword().equals(pass)) {
-//            response.sendRedirect("./all");
-//        } else {
-//            request.getRequestDispatcher("home.jsp").forward(request, response);
-//        }
+        PrintWriter out = response.getWriter();
+        String user = request.getParameter("username");
+        String pass = request.getParameter("password");
+        String remember = request.getParameter("check");
+        AccountDAO acount = new AccountDAO();
+        Account a = acount.getAccount(user);
+        if(a == null ||(a!=null && a.getPassword().equals(pass))){
+            String mess = "Username or Password wrong! ";
+            request.setAttribute("mess", mess);
+            request.setAttribute("login", "login");
+            request.getRequestDispatcher("./playlistServlet").forward(request, response);
+        }
+        if (remember != null && a != null && a.getPassword().equals(pass) && a.isRole() == true) {
+            Cookie c_user = new Cookie("username", user);
+            Cookie c_pass = new Cookie("password", pass);
+            Cookie c_display = new Cookie("display", a.getName());
+            c_user.setMaxAge(3600 * 24 * 30);
+            c_pass.setMaxAge(3600 * 24 * 30);
+            c_display.setMaxAge(3600 * 24 * 30);
+            response.addCookie(c_pass);
+            response.addCookie(c_user);
+            response.addCookie(c_display);
+            response.sendRedirect("./all");
+        } else {
+            request.setAttribute("login", "login");
+            request.getRequestDispatcher("./playlistServlet").forward(request, response);
+        }
     }
 
     /**

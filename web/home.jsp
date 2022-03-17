@@ -75,7 +75,7 @@
             </div>
         </div>
         <!-- Login -->
-        <div class="login_form">
+        <div class="login_form ${requestScope.login==login?"display":""}">
             <div class="login_content">
                 <form action="loginservlet" method="post" >
                     <i class="fas fa-xmark"></i>
@@ -84,6 +84,8 @@
                             placeholder="Username"></div>
                     <div><i class="fas fa-lock"></i><input class="input" type="password" name="password"
                             placeholder="Password"></div>
+                    <div style="color: red">${requestScope.mess}</div>
+                    <div><p><input style="width: auto;" class="input" type="checkbox" name="check">Remember me</p></div>
                     <div class="login-footer">
                         <input id="submit" type="submit" name="login" value="Login">
                         <p id="text">Not a member?<a id="signup" href="#">Signup</a></p>
