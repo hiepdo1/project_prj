@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Music;
+import java.io.File;
+import java.io.FilenameFilter;
 
 /**
  *
@@ -76,11 +78,34 @@ public class updateMusicServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+        PrintWriter out = response.getWriter();
+        String path = request.getParameter("path");
+        String[] paths = path.split("/");
+        String currentSong = paths[paths.length - 1];
+        String realPath = request.getServletContext().getRealPath("/assets/Music");
+        realPath = realPath.replace("build\\", "");
+        out.println(path);
+        File dir = new File(realPath);
+        File[] children = dir.listFiles();
+        for (File file : children) {
+            if (!file.getAbsolutePath().endsWith(".mp3")) {
+                for (File fil : file.listFiles()) {
+                    if (fil.getAbsolutePath().endsWith(currentSong)) {
+                        String sp = fil.getAbsolutePath().replace("\\", "/");
+                        path = sp.split("web/")[1];
+                    }
+                }
+            } else {
+                if (file.getAbsolutePath().endsWith(currentSong)) {
+                    String sp = file.getAbsolutePath().split("web")[1];
+                    path = file.getAbsolutePath().split("web")[1].replace("\\", "/");
+                }
+            }
+        }
+        out.print(path);
+
         int musicID = Integer.parseInt(request.getParameter("id"));
         String byteSinger = request.getParameter("singer");
-        String path = request.getParameter("path");
 
         String byteName = request.getParameter("name");
         byte ptext[] = byteName.getBytes("ISO-8859-1");
@@ -93,7 +118,6 @@ public class updateMusicServlet extends HttpServlet {
         md.updateMusic(m);
 
         response.sendRedirect("./all");
-
     }
 
     /**
